@@ -31,7 +31,7 @@ if ENV:
         raise Exception("Your TO_CHATS list does not contain valid integers.")
 
     try:
-        CAPTION = int(os.environ.get("CAPTION", ""))
+        CAPTION = int(os.environ.get("CAPTION", 0))
     except ValueError:
         raise Exception("Your CAPTION env variable is not a valid integer.")
 
@@ -82,7 +82,7 @@ else:
         raise Exception("Your TO_CHATS list does not contain valid integers.")
 
     try:
-        CAPTION = int(os.environ.get("CAPTION", ""))
+        CAPTION = int(os.environ.get("CAPTION", 0))
     except ValueError:
         raise Exception("Your CAPTION env variable is not a valid integer.")
 

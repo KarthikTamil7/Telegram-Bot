@@ -5,6 +5,16 @@ from pyrogram.errors import FloodWait
 from config import Config
 from translation import Translation
 
+from typing import Union
+
+from telegram import Message, MessageId
+from telegram.ext import CallbackContext, Filters, MessageHandler
+from telegram.error import ChatMigrated
+from telegram.update import Update
+
+from forwarder import FROM_CHATS, LOGGER, SKIP_NO, LIMIT, TO_CHATS, FILTER_TYPE, dispatcher
+
+
 FILTER = Config.FILTER_TYPE
 FROM = Config.FROM_CHATS
 TO = Config.TO_CHATS
@@ -50,7 +60,7 @@ async def run(bot, message):
             pass
    # await m.delete()
     buttons = [[
-        InlineKeyboardButton('📜 Support Group', url='https://t.me/cinemapranthanmaar')
+        InlineKeyboardButton('📜 Update Channel', url='https://t.me/Star_Moviess_Tamil')
     ]] 
     reply_markup = InlineKeyboardMarkup(buttons)
     await m.edit(

@@ -29,6 +29,25 @@ if ENV:
         TO_CHATS = set(int(x) for x in os.environ.get("TO_CHATS", "").split())
     except ValueError:
         raise Exception("Your TO_CHATS list does not contain valid integers.")
+    try:
+        CAPTION = int(os.environ.get("CAPTION", 0))
+    except ValueError:
+        raise Exception("Your CAPTION env variable is not a valid integer.")
+    try:
+        FILTER_TYPE = int(os.environ.get("FILTER_TYPE", 0))
+    except ValueError:
+        raise Exception("Your FILTER_TYPE env variable is not a valid integer.")
+    try:
+        LIMIT = int(os.environ.get("LIMIT", 0))
+    except ValueError:
+        raise Exception("Your LIMIT env variable is not a valid integer.")
+    try:
+        SKIP_NO = int(os.environ.get("SKIP_NO", 0))
+    except ValueError:
+        raise Exception("Your SKIP_NO env variable is not a valid integer.")
+
+
+
 
     REMOVE_TAG = bool(os.environ.get("REMOVE_TAG", False))
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))

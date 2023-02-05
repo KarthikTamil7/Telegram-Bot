@@ -36,7 +36,7 @@ if ENV:
         raise Exception("Your CAPTION env variable is not a valid integer.")
 
     try:
-        FILTER_TYPE = int(os.environ.get("FILTER_TYPE", "document , video"))
+        FILTER_TYPE = int(os.environ.get("FILTER_TYPE", "document"))
     except ValueError:
         raise Exception("Your FILTER_TYPE env variable is not a valid integer.")
 
@@ -87,7 +87,7 @@ else:
         raise Exception("Your CAPTION env variable is not a valid integer.")
 
     try:
-        FILTER_TYPE = int(os.environ.get("FILTER_TYPE", "document , video"))
+        FILTER_TYPE = int(os.environ.get("FILTER_TYPE", "document"))
     except ValueError:
         raise Exception("Your FILTER_TYPE env variable is not a valid integer.")
 

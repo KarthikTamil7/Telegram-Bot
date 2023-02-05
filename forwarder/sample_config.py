@@ -14,6 +14,9 @@ class Config(object):
     LOGGER = True
     REMOVE_TAG = False
 
+    CAPTION = os.environ.get("CAPTION", "")
+    FILTER_TYPE = os.environ.get("FILTER_TYPE", "")
+
     # REQUIRED
     API_KEY = "617722711:AAHysCHsVcQja6LOlHa88101lKjrxez80-M"  # API key obtained from BotFather
     OWNER_ID = "582884567"  # If you dont know, run the bot and do /id in your private chat with the bot

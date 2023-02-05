@@ -36,6 +36,18 @@
       "description": "leave it 0.0.0.0 if using Heroku.",
       "value": "0.0.0.0"
     },
+    "SKIP_NO": {
+      "description": "Enter File Skiping Number",
+      "value": "0"
+    },
+    "CAPTION": {
+      "description": "If you want to add a caption to the forwarded file, enter it here",
+      "required": false
+    },
+    "FILTER_TYPE": {
+      "description": "Type Of filters {document , audio , photo , video , animation , (empty = forward all kind of messages)}",
+      "value": "document , video"
+    },
     "URL": {
       "description": "The URL your webhook should connect to (only needed for webhook mode).",
       "value": "None"
@@ -51,6 +63,12 @@
     "WORKERS": {
       "description": "Number of threads to use, this depends on usage.  4 is the recommended (and default) amount, but your experience may vary.",
       "value": "4"
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 2,
+      "size": "eco"
     }
   }
 } 

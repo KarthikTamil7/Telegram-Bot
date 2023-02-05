@@ -59,7 +59,7 @@ try:
 
 
 
-@Client.on_message(filters.private & filters.command(["run"]))
+@Client.on_message(filters.private & filters.command("run"))
 async def run(bot, message):
     if str(message.from_user.id) not in Config.OWNER_ID:
         return

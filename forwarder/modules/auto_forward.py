@@ -24,41 +24,8 @@ def send_message(message: Message, chat_id: int) -> Union[MessageId, Message]:
         return message.copy(chat_id)
     return message.forward(chat_id)
 
-
-
-def forward(update: Update, context: CallbackContext):
-    message = update.effective_message
-    chat = update.effective_chat
-    if not message or not chat:
-        return
-    from_chat_name = chat.title or chat.first_name
-
-    for chat in TO_CHATS:
-        to_chat_name = (
-            context.bot.get_chat(chat).title or context.bot.get_chat(chat).first_name
-        )
-        try:
-            send_message(message, chat)
-        except ChatMigrated as err:
-            send_message(message, err.new_chat_id)
-            LOGGER.warning(f"Chat {chat} has been migrated to {err.new_chat_id}!! Edit the config file!!")
-        except:
-            LOGGER.exception(
-                'Error while forwarding message from chat "{}" to chat "{}".'.format(
-                    from_chat_name, to_chat_name
-                )
-            )
-
-
-try:
-    FORWARD_HANDLER = MessageHandler(
-        Filters.chat(FROM_CHATS) & ~Filters.status_update & ~Filters.command,
-        forward,
-        run_async=True,
-    )
-
     files_count = 0
-    async for message in bot.USER.search_messages(chat_id=FROM,offset=Config.SKIP_NO,limit=Config.LIMIT,filter=FILTER):
+def for message in bot.USER.search_messages(chat_id=FROM,offset=Config.SKIP_NO,limit=Config.LIMIT,filter=FILTER):
         try:
             if message.video:
                 file_name = message.video.file_name
@@ -100,6 +67,39 @@ try:
         text=f"<u><b>Successfully Forwarded</b></u>\n\n<b>Total Forwarded Files:-</b> <code>{files_count}</code> <b>Files</b>\n<b>Thanks For Using Me❤️</b>",
         reply_markup=reply_markup
     )
+
+
+def forward(update: Update, context: CallbackContext):
+    message = update.effective_message
+    chat = update.effective_chat
+    if not message or not chat:
+        return
+    from_chat_name = chat.title or chat.first_name
+
+    for chat in TO_CHATS:
+        to_chat_name = (
+            context.bot.get_chat(chat).title or context.bot.get_chat(chat).first_name
+        )
+        try:
+            send_message(message, chat)
+        except ChatMigrated as err:
+            send_message(message, err.new_chat_id)
+            LOGGER.warning(f"Chat {chat} has been migrated to {err.new_chat_id}!! Edit the config file!!")
+        except:
+            LOGGER.exception(
+                'Error while forwarding message from chat "{}" to chat "{}".'.format(
+                    from_chat_name, to_chat_name
+                )
+            )
+
+
+try:
+    FORWARD_HANDLER = MessageHandler(
+        Filters.chat(FROM_CHATS) & ~Filters.status_update & ~Filters.command,
+        forward,
+        run_async=True,
+    )
+
 
     dispatcher.add_handler(FORWARD_HANDLER)
 

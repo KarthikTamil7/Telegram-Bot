@@ -36,11 +36,6 @@ if ENV:
         raise Exception("Your CAPTION env variable is not a valid integer.")
 
     try:
-        FILTER_TYPE = int(os.environ.get("FILTER_TYPE", "document"))
-    except ValueError:
-        raise Exception("Your FILTER_TYPE env variable is not a valid integer.")
-
-    try:
         LIMIT = int(os.environ.get("LIMIT", 25000))
     except ValueError:
         raise Exception("Your LIMIT env variable is not a valid integer.")
@@ -52,8 +47,8 @@ if ENV:
 
 
 
-
-    REMOVE_TAG = bool(os.environ.get("REMOVE_TAG", False))
+    FILTER_TYPE = os.environ.get("FILTER_TYPE", "document")
+    REMOVE_TAG = bool(os.environ.get("REMOVE_TAG", True))
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     IP_ADDRESS = os.environ.get("IP_ADDRESS", "0.0.0.0")
     URL = os.environ.get("URL", "")  # Does not contain token

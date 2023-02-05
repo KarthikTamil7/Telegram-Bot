@@ -2,12 +2,12 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.errors import FloodWait
-from sample_config import Config
+from config import Config
 from translation import Translation
 
 FILTER = Config.FILTER_TYPE
-FROM = Config.FROM_CHANNEL
-TO = Config.TO_CHANNEL
+FROM = Config.FROM_CHATS
+TO = Config.TO_CHATS
 
     files_count = 0
     async for message in bot.USER.search_messages(chat_id=FROM,offset=Config.SKIP_NO,limit=Config.LIMIT,filter=FILTER):
